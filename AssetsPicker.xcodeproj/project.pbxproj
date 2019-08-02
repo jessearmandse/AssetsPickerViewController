@@ -43,6 +43,7 @@
 		E948561C22F3D4020018A55A /* Bundle+AssetsPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94855E822F3D4020018A55A /* Bundle+AssetsPickerViewController.swift */; };
 		E948561D22F3D4020018A55A /* Device+AssetsPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94855E922F3D4020018A55A /* Device+AssetsPickerViewController.swift */; };
 		E948561E22F3D4020018A55A /* AssetsPickerViewController.strings in Resources */ = {isa = PBXBuildFile; fileRef = E94855EB22F3D4020018A55A /* AssetsPickerViewController.strings */; };
+		E99FB03A22F4023400B15CC9 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99FB03922F4023400B15CC9 /* UIView+Layout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +98,7 @@
 		E94855F822F3D4020018A55A /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/AssetsPickerViewController.strings; sourceTree = "<group>"; };
 		E94855F922F3D4020018A55A /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/AssetsPickerViewController.strings; sourceTree = "<group>"; };
 		E94855FA22F3D4020018A55A /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/AssetsPickerViewController.strings; sourceTree = "<group>"; };
+		E99FB03922F4023400B15CC9 /* UIView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +214,7 @@
 				E94855C622F3D4020018A55A /* UIView+Dimmer.swift */,
 				E94855C722F3D4020018A55A /* UIView+KVO.swift */,
 				E94855C822F3D4020018A55A /* UIView+Fade.swift */,
+				E99FB03922F4023400B15CC9 /* UIView+Layout.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 				E948560F22F3D4020018A55A /* AssetsPreviewController.swift in Sources */,
 				E948560222F3D4020018A55A /* UIColor+ARGB.swift in Sources */,
 				E94855FC22F3D4020018A55A /* AssetsPickerViewController.swift in Sources */,
+				E99FB03A22F4023400B15CC9 /* UIView+Layout.swift in Sources */,
 				E948560722F3D4020018A55A /* AssetsManager.swift in Sources */,
 				E948561122F3D4020018A55A /* PanoramaIconView.swift in Sources */,
 				E948561822F3D4020018A55A /* NumberFormatter+AssetsPickerViewController.swift in Sources */,
