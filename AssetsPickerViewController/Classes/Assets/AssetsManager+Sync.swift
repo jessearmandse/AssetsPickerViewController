@@ -24,6 +24,7 @@ extension AssetsManager: PHPhotoLibraryChangeObserver {
             
             guard let albumsChangeDetail = changeInstance.changeDetails(for: albumsFetchResult) else { continue }
             
+            guard albumsFetchArray.count > section else { continue }
             // update albumsFetchArray
             albumsFetchArray[section] = albumsChangeDetail.fetchResultAfterChanges
             
