@@ -712,14 +712,30 @@ extension AssetsPhotoViewController: AssetsAlbumViewControllerDelegate {
 // MARK: - AssetsManagerDelegate
 extension AssetsPhotoViewController: AssetsManagerDelegate {
     
+    private func shouldUpdateAssetCollectionView(oldStatus: PHAuthorizationStatus, newStatus: PHAuthorizationStatus) -> Bool {
+        if #available(iOS 14, *) {
+            if oldStatus != .limited || oldStatus != .authorized {
+                if newStatus == .limited || newStatus == .authorized {
+                    return true
+                }
+            }
+        } else {
+            if oldStatus != .authorized {
+                if newStatus == .authorized {
+                    return true
+                }
+            }
+        }
+        return false
+    }
+    
     public func assetsManager(manager: AssetsManager, authorizationStatusChanged oldStatus: PHAuthorizationStatus, newStatus: PHAuthorizationStatus) {
-        if oldStatus != .authorized {
-            if newStatus == .authorized {
+        if shouldUpdateAssetCollectionView(oldStatus: oldStatus, newStatus: newStatus) {
                 updateNoPermissionView()
                 AssetsManager.shared.fetchAssets(isRefetch: true, completion: { [weak self] (_) in
                     self?.collectionView.reloadData()
                 })
-            }
+            
         } else {
             updateNoPermissionView()
         }
@@ -739,7 +755,11 @@ extension AssetsPhotoViewController: AssetsManagerDelegate {
         }
     }
     
-    public func assetsManager(manager: AssetsManager, updatedAlbums albums: [PHAssetCollection], at indexPaths: [IndexPath]) {}
+    public func assetsManager(manager: AssetsManager, updatedAlbums albums: [PHAssetCollection], at indexPaths: [IndexPath]) {
+        AssetsManager.shared.fetchAssets(isRefetch: true) { (_) in
+            self.collectionView.reloadData()
+        }
+    }
     public func assetsManager(manager: AssetsManager, reloadedAlbum album: PHAssetCollection, at indexPath: IndexPath) {}
     
     public func assetsManager(manager: AssetsManager, insertedAssets assets: [PHAsset], at indexPaths: [IndexPath]) {

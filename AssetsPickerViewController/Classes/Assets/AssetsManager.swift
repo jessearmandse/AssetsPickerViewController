@@ -142,7 +142,8 @@ extension AssetsManager {
             PHPhotoLibrary.requestAuthorization({ (status) in
                 DispatchQueue.main.async {
                     switch status {
-                    case .authorized:
+                    case .authorized,
+                         .limited:
                         completion(true)
                     default:
                         completion(false)
@@ -381,7 +382,15 @@ extension AssetsManager {
     
     @discardableResult
     func notifyIfAuthorizationStatusChanged() -> Bool {
-        let newStatus = PHPhotoLibrary.authorizationStatus()
+        
+        var newStatus: PHAuthorizationStatus
+        
+        if #available(iOS 14, *) {
+            newStatus = PHPhotoLibrary.authorizationStatus(for: .readWrite)
+        } else {
+            newStatus = PHPhotoLibrary.authorizationStatus()
+        }
+        
         if authorizationStatus != newStatus {
             let oldStatus = authorizationStatus
             authorizationStatus = newStatus
@@ -391,7 +400,11 @@ extension AssetsManager {
                 }
             }
         }
-        return authorizationStatus == .authorized
+        if #available(iOS 14, *) {
+            return authorizationStatus == .limited || authorizationStatus == .authorized
+        } else {
+            return authorizationStatus == .authorized
+        }
     }
     
     func isCountChanged(changeDetails: PHFetchResultChangeDetails<PHAsset>) -> Bool {
