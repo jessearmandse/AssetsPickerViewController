@@ -382,12 +382,15 @@ extension AssetsManager {
     
     @discardableResult
     func notifyIfAuthorizationStatusChanged() -> Bool {
+        
         var newStatus: PHAuthorizationStatus
+        
         if #available(iOS 14, *) {
-             newStatus = PHPhotoLibrary.authorizationStatus(for: .readWrite)
+            newStatus = PHPhotoLibrary.authorizationStatus(for: .readWrite)
         } else {
             newStatus = PHPhotoLibrary.authorizationStatus()
         }
+        
         if authorizationStatus != newStatus {
             let oldStatus = authorizationStatus
             authorizationStatus = newStatus
