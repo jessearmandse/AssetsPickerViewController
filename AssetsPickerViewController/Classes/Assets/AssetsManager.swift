@@ -482,10 +482,15 @@ extension AssetsManager {
         if isRefetch {
             assetArray.removeAll()
         }
-        
-        // set default album
-        select(album: defaultAlbum ?? cameraRollAlbum)
-        
+
+        // A crash happens because cameraRollAlbum is nil when it is force unwrapped here. This is a temporary workaround for the crash.
+        let targetAlbum: PHAssetCollection? = defaultAlbum ?? cameraRollAlbum
+        guard let album = targetAlbum else {
+            completion?([])
+            return
+        }
+
+        select(album: album)
         completion?(assetArray)
     }
     
