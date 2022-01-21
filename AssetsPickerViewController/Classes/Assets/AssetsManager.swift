@@ -52,7 +52,7 @@ open class AssetsManager: NSObject {
     internal(set) open var assetArray = [PHAsset]()
     
     fileprivate(set) open var defaultAlbum: PHAssetCollection?
-    fileprivate(set) open var cameraRollAlbum: PHAssetCollection!
+    fileprivate(set) open var cameraRollAlbum: PHAssetCollection?
     fileprivate(set) open var selectedAlbum: PHAssetCollection?
     
     fileprivate var isFetchedAlbums: Bool = false
@@ -483,7 +483,6 @@ extension AssetsManager {
             assetArray.removeAll()
         }
 
-        // A crash happens because cameraRollAlbum is nil when it is force unwrapped here. This is a temporary workaround for the crash.
         let targetAlbum: PHAssetCollection? = defaultAlbum ?? cameraRollAlbum
         guard let album = targetAlbum else {
             completion?([])
