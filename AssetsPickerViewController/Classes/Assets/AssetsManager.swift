@@ -483,8 +483,7 @@ extension AssetsManager {
             assetArray.removeAll()
         }
 
-        let targetAlbum: PHAssetCollection? = defaultAlbum ?? cameraRollAlbum
-        guard let album = targetAlbum else {
+        guard let album = defaultAlbum ?? cameraRollAlbum else {
             completion?([])
             return
         }
