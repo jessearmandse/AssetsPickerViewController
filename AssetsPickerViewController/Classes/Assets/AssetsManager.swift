@@ -52,7 +52,7 @@ open class AssetsManager: NSObject {
     internal(set) open var assetArray = [PHAsset]()
     
     fileprivate(set) open var defaultAlbum: PHAssetCollection?
-    fileprivate(set) open var cameraRollAlbum: PHAssetCollection!
+    fileprivate(set) open var cameraRollAlbum: PHAssetCollection?
     fileprivate(set) open var selectedAlbum: PHAssetCollection?
     
     fileprivate var isFetchedAlbums: Bool = false
@@ -482,10 +482,13 @@ extension AssetsManager {
         if isRefetch {
             assetArray.removeAll()
         }
-        
-        // set default album
-        select(album: defaultAlbum ?? cameraRollAlbum)
-        
+
+        guard let album = defaultAlbum ?? cameraRollAlbum else {
+            completion?([])
+            return
+        }
+
+        select(album: album)
         completion?(assetArray)
     }
     

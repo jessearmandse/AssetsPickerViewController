@@ -750,8 +750,8 @@ extension AssetsPhotoViewController: AssetsManagerDelegate {
             logw("selected album is nil.")
             return
         }
-        if albums.contains(selectedAlbum) {
-            select(album: manager.defaultAlbum ?? manager.cameraRollAlbum)
+        if albums.contains(selectedAlbum), let fallbackAlbum = manager.defaultAlbum ?? manager.cameraRollAlbum {
+            select(album: fallbackAlbum)
         }
     }
     
