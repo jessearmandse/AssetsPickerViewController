@@ -10,7 +10,7 @@ import UIKit
 import Photos
 
 // MARK: - AssetsManagerDelegate
-public protocol AssetsManagerDelegate: class {
+public protocol AssetsManagerDelegate: AnyObject {
     
     func assetsManager(manager: AssetsManager, authorizationStatusChanged oldStatus: PHAuthorizationStatus, newStatus: PHAuthorizationStatus)
     func assetsManager(manager: AssetsManager, reloadedAlbumsInSection section: Int)
