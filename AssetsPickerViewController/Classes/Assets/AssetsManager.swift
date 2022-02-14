@@ -113,10 +113,8 @@ extension AssetsManager {
     
     open func notifySubscribers(_ action: @escaping ((AssetsManagerDelegate) -> Void), condition: Bool = true) {
         if condition {
-            DispatchQueue.main.sync {
-                for subscriber in self.subscribers {
-                    action(subscriber)
-                }
+            for subscriber in subscribers {
+                action(subscriber)
             }
         }
     }
